@@ -1,4 +1,6 @@
-class SampleClass:
+# Sample Header File
+
+class TextTransform:
     def __init__(self):
         pass
 
@@ -29,3 +31,6 @@ class SampleClass:
         Converts a string to kebabcase
         """
         return string.replace(" ", "-").lower()
+
+if __name__ == '__main__':
+    print("Sample textTransform class loaded.")
