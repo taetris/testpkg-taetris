@@ -1,7 +1,6 @@
 from setuptools import setup
 
-with open("README", 'r') as f:
-    long_description = f.read()
+
 
 setup(
    name='testpkg-taetris',
@@ -12,7 +11,7 @@ setup(
    author='Tripti S.',
    author_email='triptis1235@gmail.com',
    packages=['testpkg-taetris'],  #same as name
-   install_requires=[], #external packages as dependencies
+   install_requires=[wheels], #external packages as dependencies
    scripts=[
             
            ]
