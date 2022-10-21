@@ -5,28 +5,28 @@ class TextTransform:
         pass
 
     @staticmethod
-    def lower(string: str):
+    def t_lower(string: str):
         """
         Converts a string to lowercase
         """
         return string.lower()
 
     @staticmethod
-    def upper(string: str):
+    def t_upper(string: str):
         """
         Converts a string to uppercase
         """
         return string.upper()
 
     @staticmethod
-    def title(string: str):
+    def t_title(string: str):
         """
         Converts a string to titlecase
         """
         return string.title()
 
     @staticmethod
-    def kebab(string: str):
+    def t_kebab(string: str):
         """
         Converts a string to kebabcase
         """
