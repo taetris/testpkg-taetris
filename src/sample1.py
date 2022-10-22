@@ -32,5 +32,10 @@ class TextTransform:
         """
         return string.replace(" ", "-").lower()
 
+    @staticmethod
+    def reverse(string: str):
+        return string[::-1]
+
+    
 if __name__ == '__main__':
     print("Sample textTransform class loaded.")
