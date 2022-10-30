@@ -1,7 +1,7 @@
 # Initial test file
 import unittest
 from src.sample1 import TextTransform as sample
-
+    
 class TestFunc1(unittest.TestCase):
     def test_lower(self): 
         self.assertEqual(sample.t_lower("ALL SMALL"), "all small")
@@ -17,8 +17,6 @@ class addedTest(unittest.TestCase):
         self.assertEqual(sample.reverse("1234567"), "7654321")
 
 if __name__ == '__main__':
-    # import timeit
-    # print(timeit.timeit("test()", setup="from __main__ import test", number=100))
     unittest.main()
 
 # CODE TO RUN UNIT TESTS AT ONCE: python -m unittest discover 
