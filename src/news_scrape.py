@@ -6,16 +6,16 @@ html = BeautifulSoup(url.content, "html.parser")
 
 # TBD: extract only from the selected class    
 def content():
-    if html.find('div', class_ = 'col-md-12'):
-        paras = html.findAll('p')
-        content = ""
-        for para in paras:
-            content = content + para.get_text() 
-        return content
+    # if html.find('div', class_ = 'col-md-12'):
+    paras = html.findAll('p')
+    content = ""
+    for para in paras:
+        content = content + para.get_text() +'\n\n'
+    return content
 
 # TBD: find images only in the class
 def download_image():
-    imgs = html.find_all("img")[2]
+    imgs = html.findAll("img")[2]
     imglink = imgs.attrs.get("src")
     # print(imglink)
 
@@ -36,11 +36,11 @@ def savefile():
     toFile = ""
     toFile = title() + '\n\n\n' + content()
 
-    f = open("files/sharesansar.txt", "w")
+    f = open("files/sharesansar.docx", "w")
     f.write(toFile)
     f.close()
 
     print("text copied to sharesansar.txt")
 
-# savefile()
+savefile()
 download_image()
