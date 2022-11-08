@@ -3,7 +3,7 @@ import requests
 import json
 
 
-f = open("files/laptop_scrape.json", "a")
+f = open("files/laptop_scrape.json", "w")
 laptop_info = {}
 url = requests.get('https://www.sastodeal.com/electronic/laptops.html')
 html = BeautifulSoup(url.content, "html.parser")
@@ -12,7 +12,7 @@ mainpage = html.find(["ol"], class_ = "products list items product-items")
 
 
 laptops = mainpage.findAll(["div" ], class_ = 'product-item-info')
-
+f.write('[')
 for laptop in laptops:
     laptop_name = laptop.find(["a"], class_ = "product-item-link").get_text()
     laptop_url = laptop.find(["a" ], class_ = 'product photo product-item-photo').attrs.get("href")
@@ -36,6 +36,8 @@ for laptop in laptops:
 
 
     json.dump(laptop_info, f)
-    
+    f.write(',')
+    f.write('\n')
+f.write(']')
 f.close()
 
