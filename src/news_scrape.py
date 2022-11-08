@@ -25,6 +25,7 @@ def download_image():
     with open(f, "wb") as file:
         file.write(image)
 
+    
 def links():
     pass
 
@@ -36,7 +37,7 @@ def savefile():
     toFile = ""
     toFile = title() + '\n\n\n' + content()
 
-    f = open("files/sharesansar.docx", "w")
+    f = open("files/sharesansar.txt", "w")
     f.write(toFile)
     f.close()
 
