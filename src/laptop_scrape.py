@@ -2,9 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
-
-f = open("files/laptop_scrape.json", "w")
-
 url = requests.get('https://www.sastodeal.com/electronic/laptops.html')
 html = BeautifulSoup(url.content, "html.parser")
 
@@ -36,7 +33,7 @@ for laptop in laptops:
     #     print('img_url: ', img_url, '\n\n')
 
 
+with open("files/laptop_scrape.json", "w") as f:
+    json.dump(laptop_list, f, indent = 4)
 
-json.dump(laptop_list, f, indent = 4)
-f.close()
 
