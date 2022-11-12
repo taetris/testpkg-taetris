@@ -41,12 +41,17 @@ for page in pages:
         #     print('img_url: ', img_url, '\n\n')
 
 
-    with open("files/laptop_scrape.json", "a") as f:
+    with open("files/laptop_scrape.json", "r+") as f:
+        file_data = json.load(f)
+        #  file_data["emp_details"].append(new_data)
+        # # Sets file's current position at offset.
+        # file.seek(0)
         json.dump(laptop_list, f, indent = 4)
     link = html.find("a", title='Next').attrs.get("href")
 
     try:
         pages.append(link)
+        
     except AttributeError:
         print("loop ended")
         break
