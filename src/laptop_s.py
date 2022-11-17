@@ -2,17 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import os
+# dict inside dict, append
+
 
 src_link = 'https://www.sastodeal.com/electronic/laptops.html'
 pageNo = 1
-
 pages = []
 if( not (os.path.exists("files/laptop_scrape.json"))):
-    # JSON file created
-    with open("files/laptop_scrape.json", "w") as f:
-        initial = {}
-        json.dump(initial, f)
-        f.close()
+    # list created
+    wholePage =[]
 
     # Default link
     link = src_link
@@ -22,18 +20,20 @@ else:
         data = f.read()
         wholePage = json.loads(data)
         for i in wholePage:
-            pageNum = i
+            pageNum = i['current_page']
         # pageNo show current page initially and then increments
         pageNo = int(pageNum)
         # print(type(pageNo))
         pageNo = pageNo + 1
         link = src_link + "?p=" + str(pageNo)
+        # print(wholePage) 
+
 
 
 # Main Scraping: for each page
 
 url = requests.get(link)
-# print("Current Link: ", link)
+print("Current Link: ", link)
 html = BeautifulSoup(url.content, "html.parser")
 
 if html.find("div", class_ = "message info empty"):
@@ -72,19 +72,20 @@ for laptop in laptops:
 
     laptop_list.append(laptop_info) 
 
-page_list = {
-    'laptops_details': laptop_list
-}
+
+    
 # print(page_list)
 
-with open("files/laptop_scrape.json", "r+") as f:
-    file_data = f.read()
-    red = json.loads(file_data)
-    # print(red)
-    
-    red.update({ str(pageNo): page_list})
-    f.seek(0)
-    json.dump(red, f, indent = 4)
+if( (os.path.exists("files/laptop_scrape.json"))):
+    with open("files/laptop_scrape.json", "w") as f:
+        pass
+
+with open("files/laptop_scrape.json", "w") as f:
+    lpt = {'current_page': pageNo,
+    'laptops_details': laptop_list}
+    wholePage.append(lpt)
+    # print(lpt)
+    json.dump(wholePage, f, indent = 4)
 
 
 

@@ -1,5 +1,6 @@
-{
-    "1": {
+[
+    {
+        "current_page": 1,
         "laptops_details": [
             {
                 "laptop_name": "\nlnspirion 15 GAMING SERIES - G5- i7-11800H-16GB(8x2)-512GB -15.6\" 120Hz 250nits-\nRTX 3050Ti- 4GB-WS11 ",
@@ -219,7 +220,8 @@
             }
         ]
     },
-    "2": {
+    {
+        "current_page": 2,
         "laptops_details": [
             {
                 "laptop_name": "\nDell G5 15 SE Gaming Laptop Ryzen 7 4800H / AMD RX 5600M 6144MB / 8GB RAM / 512GB SSD / 15.6\" FHD 144Hz Display ",
@@ -439,7 +441,8 @@
             }
         ]
     },
-    "3": {
+    {
+        "current_page": 3,
         "laptops_details": [
             {
                 "laptop_name": "\nDell G5-15 5511 | i7-11800H | 8GB | 512SSD | NVIDIA RTX 3050-4GB GDDR6 | FHD | Office 2019 ",
@@ -485,4 +488,4 @@
             }
         ]
     }
-}
+]
