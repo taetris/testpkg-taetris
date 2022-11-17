@@ -19,8 +19,7 @@ else:
     with open("files/laptop_scrape.json", "r") as f:
         data = f.read()
         wholePage = json.loads(data)
-        for i in wholePage:
-            pageNum = i['current_page']
+        pageNum = wholePage[-1]['current_page']
         # pageNo show current page initially and then increments
         pageNo = int(pageNum)
         # print(type(pageNo))
