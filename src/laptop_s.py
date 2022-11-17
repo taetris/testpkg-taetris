@@ -73,7 +73,6 @@ with open("files/laptop_scrape.json", "w") as f:
     
     pageDict['lastPage'] = pageNo
     pageDict['laptops'].extend(laptop_list)
-    f.seek(0)
     json.dump(pageDict, f, indent = 4)
 
 
