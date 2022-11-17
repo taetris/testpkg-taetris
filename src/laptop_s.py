@@ -75,9 +75,6 @@ for laptop in laptops:
     
 # print(page_list)
 
-if( (os.path.exists("files/laptop_scrape.json"))):
-    with open("files/laptop_scrape.json", "w") as f:
-        pass
 
 with open("files/laptop_scrape.json", "w") as f:
     lpt = {'current_page': pageNo,

@@ -440,5 +440,52 @@
                 "price": "\u0930\u0942 112,000"
             }
         ]
+    },
+    {
+        "current_page": 3,
+        "laptops_details": [
+            {
+                "laptop_name": "\nDell G5-15 5511 | i7-11800H | 8GB | 512SSD | NVIDIA RTX 3050-4GB GDDR6 | FHD | Office 2019 ",
+                "laptop_url": "https://www.sastodeal.com/dell-g5-15-5511-i7-11800h-8gb-512ssd-nvidia-rtx-3050-4gb-gddr6-fhd-office-2-dell-g5-15-5511-1.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/d/e/dell-g5-15-5511-top2_1.jpg",
+                "price": "\u0930\u0942 164,000"
+            },
+            {
+                "laptop_name": "\nDell G5-15 5515 | AMD Ryzen R7-5800H | 16GB | 512SSD | NVIDIA RTX 3050 4GB GDDR6 | FHD | Office 2019 ",
+                "laptop_url": "https://www.sastodeal.com/dell-g5-15-5515-amd-ryzen-r7-5800h-16gb-512ssd-nvidia-rtx-3050-4gb-gddr6-fh-g5-15-5515-1-1.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/d/e/dell-g5-15-5515--amd-ryzen-7-back1_1_1.jpg",
+                "price": "\u0930\u0942 169,000"
+            },
+            {
+                "laptop_name": "\nDell G5-15 5515 | AMD Ryzen R7-5800H | 8GB | 512SSD | NVIDIA RTX 3050 4GB GDDR6 | FHD | Office 2019 ",
+                "laptop_url": "https://www.sastodeal.com/dell-g5-15-5515-amd-ryzen-r7-5800h-8gb-512ssd-nvidia-rtx-3050-4gb-gddr6-fhd-g5-15-5515-1.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/d/e/dell-g5-15-5515--amd-ryzen-7-back1_1.jpg",
+                "price": "\u0930\u0942 160,000"
+            },
+            {
+                "laptop_name": "\nDell lnspiron 15 3511 i7-1165G7-8GB-512GB-15.6\"-FHD NVIDIA MX3502GB GDDR5-WS11-Silver (Backpack) ",
+                "laptop_url": "https://www.sastodeal.com/dell-lnspiron-15-3511-i7-1165g7-8gb-512gb-15-6-fhd-nvidia-mx3502gb-gddr5-ws-dtn-3511-i7-1165.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/d/e/dell_inspiron_3511_i7_1165g7_-8gb_ram-512gb_ssd-15.jpg",
+                "price": "\u0930\u0942 118,000"
+            },
+            {
+                "laptop_name": "\nDell Inspiron 15 3511 | i5 1135G7 | 4GB | 1TB | NVIDIA MX 350 2GB GDDR5 | FHD ",
+                "laptop_url": "https://www.sastodeal.com/dell-inspiron-15-3511-i5-1135g7-4gb-1tb-nvidia-mx-350-2gb-gddr5-fhd-dtn-di-153511-i5.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/3/5/3501_3_1__3_1.jpg",
+                "price": "\u0930\u0942 92,000"
+            },
+            {
+                "laptop_name": "\nDell lnspirion15 3501- i5-1135G7-4GB-1TB-WS10 FHD- NVIDIA MX350 2GB GDDR5 ",
+                "laptop_url": "https://www.sastodeal.com/dell-lnspirion15-3501-i5-1135g7-4gb-1tb-ws10-fhd-nvidia-mx350-2gb-gddr5-dtn-153501-i5.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/3/5/3501_2_2_1.jpg",
+                "price": "\u0930\u0942 85,000"
+            },
+            {
+                "laptop_name": "\nDell Inspiron 15 3511 | i3 1115G4 | 4GB | 256SSD | Intel UHD | FHD ",
+                "laptop_url": "https://www.sastodeal.com/dell-inspiron-15-3511-i3-1115g4-4gb-256ssd-intel-uhd-fhd-dtn-153511-i3.html",
+                "img_url": "https://static.sastodeal.com//media/seller/271739/d/e/dell-3511-laptops-3_1_1.jpg",
+                "price": "\u0930\u0942 64,000"
+            }
+        ]
     }
 ]
