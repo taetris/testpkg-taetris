@@ -12,10 +12,8 @@ filePath = "files/laptop_scrape.json"
 
 try:
     with open(filePath, "r") as f:
-        data = f.read()
-        pageDict = json.loads(data)
-        pageNo = int(pageDict['lastPage'])
-        pageNo = pageNo + 1
+        pageDict = json.loads(f.read())
+        pageNo = int(pageDict['lastPage']) + 1
         link = src_link + "?p=" + str(pageNo)
 except FileNotFoundError:
     link = src_link   
