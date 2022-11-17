@@ -39,6 +39,8 @@ if html.find("div", class_ = "message info empty"):
 mainpage = html.find(["ol"], class_ = "products list items product-items")
 laptops = mainpage.findAll(["div" ], class_ = 'product-item-info')
 
+laptop_list = []
+
 # FOr each laptop in each page
 
 for laptop in laptops:
@@ -65,12 +67,12 @@ for laptop in laptops:
     #     )
 
 
-
+    laptop_list.append(laptop_info) 
 
 with open("files/laptop_scrape.json", "w") as f:
     
     pageDict['lastPage'] = pageNo
-    pageDict['laptops'].append(laptop_info)
+    pageDict['laptops'].extend(laptop_list)
     f.seek(0)
     json.dump(pageDict, f, indent = 4)
 
