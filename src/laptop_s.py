@@ -10,16 +10,15 @@ src_link = 'https://www.sastodeal.com/electronic/laptops.html'
 pageNo = 1
 filePath = "files/laptop_scrape.json"
 
-if( not(os.path.exists(filePath))):
-    link = src_link
-
-else:
+try:
     with open(filePath, "r") as f:
         data = f.read()
         pageDict = json.loads(data)
         pageNo = int(pageDict['lastPage'])
         pageNo = pageNo + 1
         link = src_link + "?p=" + str(pageNo)
+except FileNotFoundError:
+    link = src_link   
 
 # Main Scraping: for each page
 
