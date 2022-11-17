@@ -8,24 +8,18 @@ pageDict = {'laptops': [],
             'lastPage': None}
 src_link = 'https://www.sastodeal.com/electronic/laptops.html'
 pageNo = 1
+filePath = "files/laptop_scrape.json"
 
-if( not (os.path.exists("files/laptop_scrape.json"))):
-    # Default link
+if( not(os.path.exists(filePath))):
     link = src_link
 
 else:
-    with open("files/laptop_scrape.json", "r") as f:
+    with open(filePath, "r") as f:
         data = f.read()
         pageDict = json.loads(data)
-        pageNum = pageDict['lastPage']
-        # pageNo show current page initially and then increments
-        pageNo = int(pageNum)
-        # print(type(pageNo))
+        pageNo = int(pageDict['lastPage'])
         pageNo = pageNo + 1
         link = src_link + "?p=" + str(pageNo)
-        # print(wholePage) 
-
-
 
 # Main Scraping: for each page
 
@@ -65,12 +59,9 @@ for laptop in laptops:
     #     'price: ', price, '\n\n',
     #     'img_url: ', img_url, '\n\n'
     #     )
-
-
     laptop_list.append(laptop_info) 
 
-with open("files/laptop_scrape.json", "w") as f:
-    
+with open(filePath, "w") as f:  
     pageDict['lastPage'] = pageNo
     pageDict['laptops'].extend(laptop_list)
     json.dump(pageDict, f, indent = 4)
