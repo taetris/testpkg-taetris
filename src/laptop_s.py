@@ -2,66 +2,71 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import os
-# dict inside dict, append
 
-pageDict = {'laptops': [],
-            'lastPage': None}
-src_link = 'https://www.sastodeal.com/electronic/laptops.html'
-pageNo = 1
-filePath = "files/laptop_scrape.json"
+src_link = "https://www.sastodeal.com/electronic/laptops.html"
+file_path = "files/laptop_scrape.json"
 
+
+# For pages except page 1:
+# load the json_dict,
+# find page no and
+# construct link.
 try:
-    with open(filePath, "r") as f:
-        pageDict = json.loads(f.read())
-        pageNo = int(pageDict['lastPage']) + 1
-        link = src_link + "?p=" + str(pageNo)
+    with open(file_path, "r") as f:
+        json_dict = json.load(f)
+        page_no = int(json_dict["last_page"]) + 1
+        link = src_link + "?p=" + str(page_no)
+
+# If page 1: declare.
 except FileNotFoundError:
-    link = src_link   
+    page_no = 1
+    link = src_link
+    json_dict = {"laptops": [], "last_page": None}
 
-# Main Scraping: for each page
 
+# Main Scraping: Done for each page.
+
+# Variable declaration:
 url = requests.get(link)
 print("Current Link: ", link)
 html = BeautifulSoup(url.content, "html.parser")
 
-if html.find("div", class_ = "message info empty"):
-        print("Page non existent")
-        exit(1)
-mainpage = html.find(["ol"], class_ = "products list items product-items")
-laptops = mainpage.findAll(["div" ], class_ = 'product-item-info')
+# If last page: exit.
+if html.find("div", class_="message info empty"):
+    print("Page non existent")
+    exit(1)
+
+main_page = html.find(["ol"], class_="products list items product-items")
+laptops = main_page.findAll(["div"], class_="product-item-info")
 
 laptop_list = []
 
-# FOr each laptop in each page
-
+# For each laptop, in each page:
 for laptop in laptops:
-    laptop_name = laptop.find(["a"], class_ = "product-item-link").get_text()
-    laptop_url = laptop.find(["a" ], class_ = 'product photo product-item-photo').attrs.get("href")
-    price = laptop.find(['span'], class_ = 'price').get_text()
-    img_url_all = laptop.find(['img']).attrs.get("src") 
+    laptop_name = laptop.find(["a"], class_="product-item-link").get_text()
+    laptop_url = laptop.find(
+        ["a"], class_="product photo product-item-photo"
+    ).attrs.get("href")
+    price = laptop.find(["span"], class_="price").get_text()
+    img_url_all = laptop.find(["img"]).attrs.get("src")
 
     if "static.sastodeal.com" in img_url_all:
         img_url = img_url_all
 
-    laptop_info = {'laptop_name': laptop_name,
-                    'laptop_url': laptop_url,
-                    'img_url': img_url,
-                    'price': price,
-                    
-                    }
-
-    # print(
-    #     'laptop name:',laptop_name, '\n\n', 
-    #     'laptop_url: ',laptop_url, '\n\n', 
-    #     'price: ', price, '\n\n',
-    #     'img_url: ', img_url, '\n\n'
-    #     )
-    laptop_list.append(laptop_info) 
-
-with open(filePath, "w") as f:  
-    pageDict['lastPage'] = pageNo
-    pageDict['laptops'].extend(laptop_list)
-    json.dump(pageDict, f, indent = 4)
+    laptop_info = {
+        "laptop_name": laptop_name,
+        "laptop_url": laptop_url,
+        "img_url": img_url,
+        "price": price,
+    }
+    laptop_list.append(laptop_info)
 
 
-
+#  Writing scraped info to JSON File:
+# save last_page no,
+# append new scraped laptops and
+# dump to file.
+with open(filePath, "w") as f:
+    json_dict["last_page"] = page_no
+    json_dict["laptops"].extend(laptop_list)
+    json.dump(json_dict, f, indent=4)
