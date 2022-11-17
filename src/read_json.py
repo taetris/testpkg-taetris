@@ -2,12 +2,17 @@ import json
 from bs4 import BeautifulSoup
 import requests
 
-with open("files/laptop_scrape.json", "r") as f:
+with open("files/laptop_scrape.json", "r+") as f:
         data = f.read()
         wholePage = json.loads(data)
-        for i in wholePage:
-            
-            print(i['current_page'])
+        print(wholePage)
+        wholePage['laptops_details'].append('blahahahhahahha')
+        print(wholePage)
+        f.seek(0)
+        json.dump(wholePage,f, indent=4)
+
+
+
 # with open("files/laptop_scrape.json", "r") as f:
 #     data = f.read()
 #     laptops = json.loads(data)

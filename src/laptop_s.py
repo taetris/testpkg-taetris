@@ -4,22 +4,20 @@ import json
 import os
 # dict inside dict, append
 
-
+pageDict = {'laptops': [],
+            'lastPage': None}
 src_link = 'https://www.sastodeal.com/electronic/laptops.html'
 pageNo = 1
-pages = []
-if( not (os.path.exists("files/laptop_scrape.json"))):
-    # list created
-    wholePage =[]
 
+if( not (os.path.exists("files/laptop_scrape.json"))):
     # Default link
     link = src_link
 
 else:
     with open("files/laptop_scrape.json", "r") as f:
         data = f.read()
-        wholePage = json.loads(data)
-        pageNum = wholePage[-1]['current_page']
+        pageDict = json.loads(data)
+        pageNum = pageDict['lastPage']
         # pageNo show current page initially and then increments
         pageNo = int(pageNum)
         # print(type(pageNo))
@@ -40,8 +38,6 @@ if html.find("div", class_ = "message info empty"):
         exit(1)
 mainpage = html.find(["ol"], class_ = "products list items product-items")
 laptops = mainpage.findAll(["div" ], class_ = 'product-item-info')
-
-laptop_list = []
 
 # FOr each laptop in each page
 
@@ -69,19 +65,14 @@ for laptop in laptops:
     #     )
 
 
-    laptop_list.append(laptop_info) 
-
-
-    
-# print(page_list)
 
 
 with open("files/laptop_scrape.json", "w") as f:
-    lpt = {'current_page': pageNo,
-    'laptops_details': laptop_list}
-    wholePage.append(lpt)
-    # print(lpt)
-    json.dump(wholePage, f, indent = 4)
+    
+    pageDict['lastPage'] = pageNo
+    pageDict['laptops'].append(laptop_info)
+    f.seek(0)
+    json.dump(pageDict, f, indent = 4)
 
 
 
