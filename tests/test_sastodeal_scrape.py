@@ -1,26 +1,27 @@
 import pytest
 import src.sastodeal_scrape as s 
 
+def setUp():
+    src_link = "https://www.sastodeal.com/electronic/laptops.html"
+    file_path = "files/laptop_scrape.json"
+
+def tearDown():
+    pass
+
 def test_getLinkFrom():
-    assert s.getLinkFrom("files/laptop_scrape.json")[1] in ['https://www.sastodeal.com/electronic/laptops.html',
-                                                            'https://www.sastodeal.com/electronic/laptops.html?p=2',
-                                                            'https://www.sastodeal.com/electronic/laptops.html?p=3',
-                                                            'https://www.sastodeal.com/electronic/laptops.html?p=4'
-                                                            ]
+    print( getLinkFrom(file_path, "r") )
 
 def test_searchLaptopInfoIn():
-    laptops = main_page.findAll(["div"], class_="product-item-info")
+    pass
 
-    assert s.searchLaptopInfoIn()
+def test_initialize():
+    # return page_no, link, json_dict
+    pass
 
-# def test_initialize():
-#     # return page_no, link, json_dict
-#     pass
+def test_getContentFrom():
+    # return html
+    pass
 
-# def test_getContentFrom():
-#     # return html
-#     pass
-
-# def test_writeScrapedInfoTo():
-#     pass
+def test_writeScrapedInfoTo():
+    pass
 
