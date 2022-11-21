@@ -1,27 +1,15 @@
 import pytest
-import src.sastodeal_scrape as s 
+import src.sastodeal_scrape as s
 
-def setUp():
-    src_link = "https://www.sastodeal.com/electronic/laptops.html"
-    file_path = "files/laptop_scrape.json"
+@pytest.fixture
+def input_file():
+    return "files/laptop_scrape.json"
 
-def tearDown():
-    pass
+@pytest.mark.parametrize("first_laptop_name", [
+    ('\nDell G5 15 SE Gaming Laptop Ryzen 7 4800H / AMD RX 5600M 6144MB / 8GB RAM / 512GB SSD / 15.6" FHD 144Hz Display '),
+    ('\nDell G5-15 5511 | i7-11800H | 8GB | 512SSD | NVIDIA RTX 3050-4GB GDDR6 | FHD | Office 2019 ')
+    
+])
 
-def test_getLinkFrom():
-    print( getLinkFrom(file_path, "r") )
-
-def test_searchLaptopInfoIn():
-    pass
-
-def test_initialize():
-    # return page_no, link, json_dict
-    pass
-
-def test_getContentFrom():
-    # return html
-    pass
-
-def test_writeScrapedInfoTo():
-    pass
-
+def test_laptopScrape(input_file, first_laptop_name):
+    assert  s.laptopScrape(input_file)[0]["laptop_name"] == first_laptop_name
