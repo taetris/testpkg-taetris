@@ -12,13 +12,12 @@ file_path = "files/laptop_scrape.json"
 
 # Functions:
 
-def getLinkFrom(json_file, mode):
-    with open(json_file, mode) as f:
+def getLinkFrom(json_file):
+    with open(json_file, "r") as f:
         json_dict = json.load(f)
         page_no = int(json_dict["last_page"]) + 1
         link = src_link + "?p=" + str(page_no)
     return page_no, link, json_dict
-
 
 def searchLaptopInfoIn(laptop):
     laptop_name = laptop.find(["a"], class_="product-item-link").get_text()
@@ -67,7 +66,7 @@ def writeScrapedInfoTo(json_file, mode, json_dict):
 
 # File Read:
 try:
-    page_no, link, json_dict = getLinkFrom(file_path, "r")
+    page_no, link, json_dict = getLinkFrom(file_path)
 except FileNotFoundError:
     page_no, link, json_dict = initialize()
 
