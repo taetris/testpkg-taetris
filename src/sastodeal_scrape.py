@@ -6,6 +6,7 @@ import os
 src_link = "https://www.sastodeal.com/electronic/laptops.html"
 json_file = "files/laptop_scrape.json"
 
+
 def laptopScrape(file_path):
     # For pages except page 1:
     # load the json_dict,
@@ -22,7 +23,6 @@ def laptopScrape(file_path):
         page_no = 1
         link = src_link
         json_dict = {"laptops": [], "last_page": None}
-
 
     # Main Scraping: Done for each page.
 
@@ -70,5 +70,6 @@ def laptopScrape(file_path):
         json_dict["laptops"].extend(laptop_list)
         json.dump(json_dict, f, indent=4)
         return laptop_list
+
 
 laptopScrape(json_file)
