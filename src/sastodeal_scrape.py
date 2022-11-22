@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import os
+import sys
 
 src_link = "https://www.sastodeal.com/electronic/laptops.html"
 json_file = "files/laptop_scrape.json"
@@ -34,42 +35,42 @@ def laptopScrape(file_path):
     # If last page: exit.
     if html.find("div", class_="message info empty"):
         print("Page non existent")
-        quit()
+        
+    else:
+        main_page = html.find(["ol"], class_="products list items product-items")
+        laptops = main_page.findAll(["div"], class_="product-item-info")
 
-    main_page = html.find(["ol"], class_="products list items product-items")
-    laptops = main_page.findAll(["div"], class_="product-item-info")
+        laptop_list = []
 
-    laptop_list = []
+        # For each laptop, in each page:
+        for laptop in laptops:
+            laptop_name = laptop.find(["a"], class_="product-item-link").get_text()
+            laptop_url = laptop.find(
+                ["a"], class_="product photo product-item-photo"
+            ).attrs.get("href")
+            price = laptop.find(["span"], class_="price").get_text()
+            img_url_all = laptop.find(["img"]).attrs.get("src")
 
-    # For each laptop, in each page:
-    for laptop in laptops:
-        laptop_name = laptop.find(["a"], class_="product-item-link").get_text()
-        laptop_url = laptop.find(
-            ["a"], class_="product photo product-item-photo"
-        ).attrs.get("href")
-        price = laptop.find(["span"], class_="price").get_text()
-        img_url_all = laptop.find(["img"]).attrs.get("src")
+            if "static.sastodeal.com" in img_url_all:
+                img_url = img_url_all
 
-        if "static.sastodeal.com" in img_url_all:
-            img_url = img_url_all
+            laptop_info = {
+                "laptop_name": laptop_name,
+                "laptop_url": laptop_url,
+                "img_url": img_url,
+                "price": price,
+            }
+            laptop_list.append(laptop_info)
 
-        laptop_info = {
-            "laptop_name": laptop_name,
-            "laptop_url": laptop_url,
-            "img_url": img_url,
-            "price": price,
-        }
-        laptop_list.append(laptop_info)
-
-    #  Writing scraped info to JSON File:
-    # save last_page no,
-    # append new scraped laptops and
-    # dump to file.
-    with open(file_path, "w") as f:
-        json_dict["last_page"] = page_no
-        json_dict["laptops"].extend(laptop_list)
-        json.dump(json_dict, f, indent=4)
-        return laptop_list
+        #  Writing scraped info to JSON File:
+        # save last_page no,
+        # append new scraped laptops and
+        # dump to file.
+        with open(file_path, "w") as f:
+            json_dict["last_page"] = page_no
+            json_dict["laptops"].extend(laptop_list)
+            json.dump(json_dict, f, indent=4)
+            return laptop_list
 
 
 laptopScrape(json_file)
