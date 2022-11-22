@@ -32,15 +32,14 @@ def laptopScrape(file_path):
     print("Current Link: ", link)
     html = BeautifulSoup(url.content, "html.parser")
 
+    laptop_list = []
     # If last page: exit.
     if html.find("div", class_="message info empty"):
         print("Page non existent")
-        
+
     else:
         main_page = html.find(["ol"], class_="products list items product-items")
         laptops = main_page.findAll(["div"], class_="product-item-info")
-
-        laptop_list = []
 
         # For each laptop, in each page:
         for laptop in laptops:
@@ -70,7 +69,8 @@ def laptopScrape(file_path):
             json_dict["last_page"] = page_no
             json_dict["laptops"].extend(laptop_list)
             json.dump(json_dict, f, indent=4)
-            return laptop_list
+
+    return laptop_list
 
 
 laptopScrape(json_file)
