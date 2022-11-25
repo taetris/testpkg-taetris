@@ -36,6 +36,7 @@ def laptopScrape(file_path):
     # If last page: exit.
     if html.find("div", class_="message info empty"):
         print("Page non existent")
+        page_no = -1
 
     else:
         main_page = html.find(["ol"], class_="products list items product-items")
@@ -70,7 +71,7 @@ def laptopScrape(file_path):
             json_dict["laptops"].extend(laptop_list)
             json.dump(json_dict, f, indent=4)
 
-    return laptop_list
+    return [laptop_list, page_no]
 
 
 laptopScrape(json_file)
